@@ -1518,8 +1518,9 @@
 	
 	
 	var _stripHtml = function ( d ) {
-		return d
-			.replace( /<[^>]*>/g, '' ); // Safety for incomplete script tag
+		var parser = new DOMParser();
+		    var doc = parser.parseFromString(d, 'text/html');
+		    return doc.body.textContent || '';
 	};
 	
 	
@@ -5954,7 +5955,10 @@
 	
 		for ( var i=0, ien=settings.aoData.length ; i<ien ; i++ ) {
 			s = _fnGetCellData( settings, i, colIdx, 'display' )+'';
-			s = s.replace( /<[^>]*>/g, '' );
+			/* s = s.replace( /<[^>]*>/g, '' ); */
+			var parser = new DOMParser();
+			var doc = parser.parseFromString(s, 'text/html');
+			s = doc.body.textContent || '';
 			s = s.replace( /&nbsp;/g, ' ' );
 	
 			if ( s.length > max ) {
@@ -15050,11 +15054,10 @@
 	
 	$.extend(DataTable.ext.type.search, {
 		html: function (data) {
-			return _empty(data) ?
+			var parser = new DOMParser();
 				data :
 				typeof data === 'string' ?
-					data.replace(/<[^>]*>/g, " ")
-						.replace(_re_html, "") :
+					(parser.parseFromString(d, 'text/html').body.textContent || '') :
 					'';
 		},
 
