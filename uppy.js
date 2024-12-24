@@ -13887,7 +13887,7 @@ var rules = [
   ['#', 'hash'],                        // Extract from the back.
   ['?', 'query'],                       // Extract from the back.
   function sanitize(address) {          // Sanitize what is left of the address
-    return address.replace('\\', '/');
+    return address.replace(/\\/g, '/');
   },
   ['/', 'pathname'],                    // Extract from the back.
   ['@', 'auth', 1],                     // Extract from the front.
