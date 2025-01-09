@@ -30,6 +30,7 @@
     "@angular/platform-browser-dynamic": "^18.2.8",
     "@angular/router": "^18.2.8",
     "@angular/service-worker": "^18.2.8",
+    "@ctrl/tinycolor": "^4.1.0",
     "@volo/abp.commercial.ng.ui": "~8.2.2",
     "@volo/abp.ng.account": "~8.2.2",
     "@volo/abp.ng.audit-logging": "~8.2.2",
